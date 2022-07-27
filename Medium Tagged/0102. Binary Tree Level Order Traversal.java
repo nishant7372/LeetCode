@@ -1,6 +1,3 @@
-![image](https://assets.leetcode.com/users/images/70c167f6-4af7-4e6a-aede-a44490a0cb54_1658934718.0628078.png)
-
-```java 
 //Depth First Search
 class Solution {
     private List<List<Integer>> a;
