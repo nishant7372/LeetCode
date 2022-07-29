@@ -1,0 +1,39 @@
+class Solution {
+    boolean flag =true;
+    public TreeNode pruneTree(TreeNode root) {
+        check(root);
+        if(flag)
+            return null;
+        flag=true;
+        Queue<TreeNode> queue = new LinkedList<>();
+        
+        queue.add(root);
+        while(!queue.isEmpty())
+        {
+            TreeNode presentNode = queue.remove();
+            check(presentNode.left);
+            if(flag)
+                presentNode.left=null;
+            flag=true;
+            check(presentNode.right);
+            if(flag)
+                presentNode.right=null;
+            if(presentNode.left!=null)
+                queue.add(presentNode.left);
+            if(presentNode.right!=null)
+                queue.add(presentNode.right);
+            flag=true;
+        }
+        return root;
+    }
+    
+    private void check(TreeNode root)
+    {
+        if(root==null)
+            return;
+        if(root.val==1)
+            flag=false;
+        check(root.left);
+        check(root.right);
+    }
+}
