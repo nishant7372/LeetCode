@@ -1,8 +1,9 @@
 class Solution {
     public boolean checkInclusion(String s, String t) {
+        // to check if string t contains permutation/anagram of string s
+        
         if(t.length()<s.length())
             return false;
-        String temp = t.substring(0,s.length());
         
         //Frequency HashTable for String s
         int[] freq1 = new int[26];
@@ -12,7 +13,7 @@ class Solution {
         for(int i=0;i<s.length();i++)
         {
             freq1[s.charAt(i)-'a']++;      //for string s
-            freq2[temp.charAt(i)-'a']++;   //for 1st substring of t
+            freq2[t.charAt(i)-'a']++;      //for 1st substring of t of length s.length()
         }
         
         if(equal(freq1,freq2))
