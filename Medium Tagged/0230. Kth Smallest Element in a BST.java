@@ -13,6 +13,31 @@
  *     }
  * }
  */
+
+
+//Optimized Approach --> 0ms runtime faster than 100percent
+class Solution {
+    private int k;
+    public int kthSmallest(TreeNode root, int k) {
+        this.k=k;
+        return inorder(root);
+    }
+    
+    private int inorder(TreeNode root)
+    {
+         if(root==null)
+            return -1;
+         int res = inorder(root.left);
+         if(--k==0)
+             return root.val;
+         if(res==-1)
+             return inorder(root.right);
+         return res;
+    }
+}
+
+
+//1ms runtime
 class Solution {
     private int res=-1;
     private int k;
