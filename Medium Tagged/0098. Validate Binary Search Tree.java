@@ -1,3 +1,25 @@
+// Approach 1 -  Inorder Recursive Traversal and Comparison with previous Element  --> 0ms runtime faster than 100percent (optimized approach)
+
+class Solution {
+    Integer prev = null;
+    public boolean isValidBST(TreeNode root) {
+        return inorder(root);
+    }
+
+    private boolean inorder(TreeNode root)
+    {
+        if(root==null)
+            return true;
+        boolean b1 = inorder(root.left);
+        if(prev!=null&&root.val<=prev)
+            return false;
+        prev = root.val;
+        if(b1)
+            return inorder(root.right);
+        return b1;
+    }
+}
+
 // Approach 1 -  Inorder Recursive Traversal and Comparison with previous Element  --> 1ms runtime
 
 class Solution {
