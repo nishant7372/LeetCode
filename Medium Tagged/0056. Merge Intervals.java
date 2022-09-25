@@ -1,3 +1,31 @@
+//Method 1
+class Solution {
+    public int[][] merge(int[][] intervals) {
+        Arrays.sort(intervals,(int[] a,int[] b) -> a[0]==b[0]? Integer.compare(a[1],b[1]) : Integer.compare(a[0],b[0]));
+            
+        ArrayList<int[]> list = new ArrayList<>();
+       
+        for(int i=0;i<intervals.length;i++)
+        {
+            int j = i+1;
+            int end = intervals[i][1];
+			
+            while(j<intervals.length && intervals[j][0]<=end)
+                end = Math.max(end,intervals[j++][1]);
+            
+            list.add(new int[]{intervals[i][0],end});
+            i=j-1;
+        }
+        
+        int[][] res = new int[list.size()][];
+        int i=0;
+        for(int[] x:list)
+            res[i++]=x;
+        return res;
+    }
+}
+
+//Method 2
 class Solution {
     public int[][] merge(int[][] intervals) {
         if(intervals.length==1)
