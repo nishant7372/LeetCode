@@ -1,5 +1,6 @@
 # LeetCode
-Solution to Problems that I had Solved on LeetCode
+Solutions of the Problems that I had Solved on LeetCode
+
 ## My LeetCode Profile Link - 
 ### https://leetcode.com/nishant7372/
 
