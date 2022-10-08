@@ -1,3 +1,36 @@
+// Method 1 (Optimized)
+class Solution {
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        List<List<Integer>> list= new ArrayList<List<Integer>>();
+        
+        Arrays.sort(candidates);
+        
+        find(list,candidates,target,new ArrayList<Integer>(),0);
+        return list;
+    }
+    
+    
+    private void find(List<List<Integer>> list,int[] candidates,int target,ArrayList<Integer> temp,int start)
+    {
+        if(target==0)
+        {
+            list.add(new ArrayList<Integer>(temp));
+            return;
+        }
+        
+        for(int i=start;i<candidates.length;i++)
+        {
+            if(target-candidates[i]>=0)
+            {
+                temp.add(candidates[i]);
+                find(list,candidates,target-candidates[i],temp,i);
+                temp.remove(temp.size()-1);
+            }
+        }
+    }
+}
+
+//Using set --> Method 2
 class Solution {
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
         Arrays.sort(candidates);
