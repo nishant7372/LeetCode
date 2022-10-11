@@ -1,22 +1,21 @@
 class Solution {
-    public int hardestWorker(int n, int[][] logs) {
-        
-        int maxTime=logs[0][1];
-        int id=logs[0][0];
-        for(int i=1;i<logs.length;i++)
-        {
-           if(logs[i][1]-logs[i-1][1]>=maxTime){
-               if(logs[i][1]-logs[i-1][1]==maxTime){
-                   if(id>logs[i][0]){
-                   id = logs[i][0];
-                   }
-               }
-               else{
-                   maxTime = logs[i][1]-logs[i-1][1];
-                   id = logs[i][0];
-               }
-           }
-        }
-        return id;
+    public String breakPalindrome(String s) {
+       if(s.length()==1)
+           return "";
+       int i=0;
+       StringBuffer sb = new StringBuffer(s);
+       while(i<s.length() && s.charAt(i)=='a')
+           i++;
+       
+       if((s.length()%2==1 && i==s.length()/2) || i==s.length())
+       {
+           sb.setCharAt(s.length()-1,'b');
+           return sb.toString();
+       }
+       else 
+       {
+           sb.setCharAt(i,'a');
+           return sb.toString();
+       }
     }
 }
