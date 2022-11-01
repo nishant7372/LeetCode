@@ -1,3 +1,26 @@
+//Method 1 --> Boyer's Moore Majority Voting Algorithm
+
+class Solution {
+    public int majorityElement(int[] nums) {
+        int count=0;  //votes
+        int element=-1; //candidate
+        
+        for(int x:nums)
+        {
+            if(count==0){
+                count++;
+                element=x;
+            }
+            else if(x==element)
+                count++;
+            else
+                count--;
+        }
+        return element;
+    }
+}
+//Method 2 --> Sorting
+
 class Solution {
     public int majorityElement(int[] nums) {
         Arrays.sort(nums);
