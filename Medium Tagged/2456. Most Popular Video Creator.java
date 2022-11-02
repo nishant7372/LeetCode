@@ -36,7 +36,7 @@ class Solution {
                 {
                     map2.put(creators[i],new Pair<String,Integer>(ids[i],views[i]));
                 }
-                else if(p.getValue()==views[i] && p.getKey().compareTo(ids[i])==1)
+                else if(p.getValue()==views[i] && p.getKey().compareTo(ids[i])>0)
                 map2.put(creators[i],new Pair<String,Integer>(ids[i],views[i]));
             }
             
