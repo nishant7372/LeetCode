@@ -1,12 +1,15 @@
 class Solution {
     int m,n;
     public boolean exist(char[][] board, String word) {
-        int[] a = new int[52];
-        int[] b = new int[52];
         m = board.length;
         n = board[0].length;
-        if(word.length()>m*n)
+		 if(word.length()>m*n)
             return false;
+			
+		// ------------- Comparing Frequency of Characters to avoid searching -----------------------
+		
+        int[] a = new int[52];
+        int[] b = new int[52];
         for(int i=0;i<word.length();i++)
         {
             if(word.charAt(i)<='Z')
@@ -27,6 +30,9 @@ class Solution {
         for(int i=0;i<52;i++)
             if(a[i]>b[i])
                 return false;
+				
+       // ----------------------------------------------------------------------------------------------
+	   
         for(int i=0;i<m;i++)
         {
             for(int j=0;j<n;j++)
@@ -50,17 +56,18 @@ class Solution {
         if(word.length()==len)
              return true;
         
-        board[i][j]='*';  //mark as visited
+        board[i][j]='*';  //marking as visited
         
+       boolean res= false;
         if(backtrack(board,word,i+1,j,len))
-            return true;
-        if(backtrack(board,word,i-1,j,len))
-            return true;
-        if(backtrack(board,word,i,j+1,len))
-            return true;
-        if(backtrack(board,word,i,j-1,len))
-            return true;
-        board[i][j]=word.charAt(len-1);  //retrieving in case not matched
-        return false;
+            res = true;
+        else if(backtrack(board,word,i-1,j,len))
+            res = true;
+        else if(backtrack(board,word,i,j+1,len))
+            res = true;
+        else if(backtrack(board,word,i,j-1,len))
+            res = true;
+        board[i][j]=word.charAt(len-1);  // retrieving the original character
+        return res;
     }
 }
