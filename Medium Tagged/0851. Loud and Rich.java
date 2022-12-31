@@ -1,4 +1,7 @@
-//Optimized --> 1ms runtime Faster than 99%
+//Method 1 --> Optimized
+//5ms runtime Faster than 99.7%
+//Time Complexity - O(n) ; n=quiet.length;
+
 class Solution {
     public int[] loudAndRich(int[][] richer, int[] quiet) {
         ArrayList<Integer>[] a = new ArrayList[quiet.length];
@@ -33,5 +36,49 @@ class Solution {
                min=r;
         }
         return res[x]=min;
+    }
+}
+
+
+//Method 2
+//104ms runtime Faster than 12.96%
+//Time Complexity - O(n*n) ; n=quiet.length;
+
+class Solution {
+    int min;
+    public int[] loudAndRich(int[][] richer, int[] quiet) {
+        ArrayList<Integer>[] a = new ArrayList[quiet.length];
+
+        for(int i=0;i<quiet.length;i++)
+        a[i] = new ArrayList<Integer>();
+
+        for(int[] x:richer)
+        {
+            a[x[1]].add(x[0]);
+        }
+
+        int[] res = new int[a.length];
+        for(int i=0;i<quiet.length;i++)
+        {
+            boolean[] visited = new boolean[a.length];
+            min=i;
+            dfs(a,i,quiet,visited);
+            res[i]=min;
+        }
+        return res;
+    }
+
+    private void dfs(ArrayList<Integer>[] a,int x,int[] quiet,boolean[] visited)
+    {
+        if(visited[x])
+           return;
+        if(quiet[x]<quiet[min]){
+           min=x;
+        }
+        visited[x]=true;
+        for(int y:a[x])
+        {
+            dfs(a,y,quiet,visited);
+        }
     }
 }
