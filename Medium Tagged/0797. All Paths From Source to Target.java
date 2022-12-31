@@ -1,3 +1,6 @@
+// Optimzed Approach
+// 1ms runtime Beats 100%
+
 class Solution {
     public List<List<Integer>> allPathsSourceTarget(int[][] graph) {
         List<List<Integer>> list = new ArrayList<>();
