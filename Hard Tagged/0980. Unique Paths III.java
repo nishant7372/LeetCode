@@ -1,3 +1,5 @@
+//Method 1
+
 class Solution {
     int paths;
     int empty;
@@ -47,5 +49,57 @@ class Solution {
             }
         }
         return c;
+    }
+}
+
+
+//Method 2
+
+class Solution {
+    int paths;
+    public int uniquePathsIII(int[][] grid) {
+        for(int i=0;i<grid.length;i++)
+        {
+            for(int j=0;j<grid[0].length;j++)
+            {
+                if(grid[i][j]==1){
+                solve(i,j,grid);
+                return paths;
+                }
+            }
+        }
+        return 0;
+    }
+
+    private void solve(int i,int j,int[][] grid)
+    {
+        if(i==-1||j==-1||i==grid.length||j==grid[0].length||grid[i][j]==-1)
+        return;
+        if(grid[i][j]==2 && check(grid)){
+            paths++;
+            return;
+        }
+        int temp = grid[i][j];
+        grid[i][j]=-1;
+        solve(i+1,j,grid);
+        solve(i-1,j,grid);
+        solve(i,j-1,grid);
+        solve(i,j+1,grid);
+        grid[i][j]= temp;
+    }
+
+
+    private boolean check(int[][] grid)
+    {
+        for(int i=0;i<grid.length;i++)
+        {
+            for(int j=0;j<grid[0].length;j++)
+            {
+                if(grid[i][j]==0){
+                return false;
+                }
+            }
+        }
+        return true;
     }
 }
