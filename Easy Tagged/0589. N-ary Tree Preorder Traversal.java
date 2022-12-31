@@ -24,6 +24,24 @@ class Solution {
     }
 }
 
+//Method 2 --> Using Recursion
+
+class Solution {
+    ArrayList<Integer> a = new ArrayList<Integer>();
+    
+    public List<Integer> preorder(Node root) {
+        if(root==null)
+            return a;
+        a.add(root.val);
+        
+        for(Node temp: root.children)
+        {
+            preorder(temp);
+        }
+        return a;
+    }
+}
+
 
 /*
 // Definition for a Node.
