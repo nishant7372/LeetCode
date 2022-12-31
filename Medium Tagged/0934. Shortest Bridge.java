@@ -1,3 +1,13 @@
+// ## Intuition
+// 1. Use DFS for traversal of 1st island.(same can be done using BFS)
+// 2. Use BFS for finding smallest path to the 2nd island.
+
+// ## Approach
+// * Traverse the 1st island found using dfs.
+// * While doing dfs add all the water boundaries(i,j)`grid[i][j]=0` of 1st island in the queue.
+// * Using multi-source bfs, find the smallest path to the 2nd island.
+
+    
 class Solution {
     boolean[][] visited;
     int n;
