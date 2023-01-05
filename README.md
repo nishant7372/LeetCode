@@ -5,5 +5,6 @@ Solutions of LeetCode Problems
 ## My LeetCode Profile Link - 
 ### https://leetcode.com/nishant7372/
 
-![image](https://user-images.githubusercontent.com/91368799/209990247-9a57b236-e960-481e-8971-0cfb37926cbf.png)
+![image](https://user-images.githubusercontent.com/91368799/210767123-a73a4cf2-d60f-4f20-a4da-49583c157c8a.png)
+
 
