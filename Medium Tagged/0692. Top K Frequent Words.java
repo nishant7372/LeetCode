@@ -1,3 +1,5 @@
+//Approach 1
+//Using Multiple Maps and Sortings --> Faster than 96%
 class Solution {
     public List<String> topKFrequent(String[] words, int k) {
         Map<String,Integer> map = new HashMap<>();
@@ -56,5 +58,52 @@ class Solution {
                 break;
         }
         return res;
+    }
+}
+
+
+//Approach 2
+//Using PriorityQueue and Map.Entry<> Class --> Faster than 50%
+class Solution {
+    public List<String> topKFrequent(String[] words, int k) {
+        List<String> list = new ArrayList<>();
+        Map<String,Integer> map = new HashMap<>();
+        for(String s:words){
+            map.put(s,map.getOrDefault(s,0)+1);
+        }
+        PriorityQueue<Map.Entry<String, Integer>> pq = new PriorityQueue<>((a,b) -> a.getValue()==b.getValue()? a.getKey().compareTo(b.getKey()):Integer.compare(b.getValue(),a.getValue()));
+        
+        for(var entry:map.entrySet()){
+            pq.add(entry);
+        }
+
+        while(k-->0){
+            list.add(pq.remove().getKey());
+        }
+        return list;
+    }
+}
+
+//Approach 3
+//Using PriorityQueue and Map.Entry<> Class with Pair<String,Integer>--> Faster than 50%
+class Solution {
+    public List<String> topKFrequent(String[] words, int k) {
+        List<String> list = new ArrayList<>();
+        Map<String,Integer> map = new HashMap<>();
+        for(String s:words){
+            map.put(s,map.getOrDefault(s,0)+1);
+        }
+        PriorityQueue<Pair<String,Integer>> pq = new PriorityQueue<>((a,b) -> a.getValue()==b.getValue()? a.getKey().compareTo(b.getKey()):Integer.compare(b.getValue(),a.getValue()));
+        
+        for(var entry:map.entrySet()){
+            String s = entry.getKey();
+            int val = entry.getValue();
+            pq.add(new Pair<>(s,val));
+        }
+
+        while(k-->0){
+            list.add(pq.remove().getKey());
+        }
+        return list;
     }
 }
