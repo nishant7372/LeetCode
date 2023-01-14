@@ -1,4 +1,4 @@
-## Union-Find Beats 100%
+// Union-Find Beats 100%
 
 class Solution {
     int[] parent;
@@ -26,7 +26,7 @@ class Solution {
 }
 
 
-## Brute-Force --> HashTable Beats 90% (Time Optimized Brute Force)
+//  Brute-Force --> HashTable Beats 90% (Time Optimized Brute Force)
 
 class Solution {
     public String smallestEquivalentString(String s1, String s2, String baseStr) {
@@ -110,7 +110,7 @@ class SetMaker{
     }
 }
 
-## Brute Force --> HashSet Beats 70% (Space Optimized Brute Force)
+//  Brute Force --> HashSet Beats 70% (Space Optimized Brute Force)
 
 class Solution {
     public String smallestEquivalentString(String s1, String s2, String baseStr) {
@@ -191,7 +191,7 @@ class SetMaker{
     }
 }
 
-## Depth First Search --> Beats 50% 
+// Depth First Search --> Beats 50% 
 
 class Solution {
     boolean[] visited;
