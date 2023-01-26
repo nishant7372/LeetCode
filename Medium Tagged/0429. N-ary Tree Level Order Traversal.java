@@ -10,13 +10,14 @@ class Solution {
     
     private void traverse(Node root,int i)
     {
-        if(root==null)
+        if(root==null){
             return;
-        if(i==res.size())
+        }
+        if(i==res.size()){
             res.add(new ArrayList<Integer>());
+        }
         res.get(i).add(root.val);
-        for(Node child:root.children)
-        {
+        for(Node child:root.children){
             traverse(child,i+1);
         }
     }
@@ -24,7 +25,31 @@ class Solution {
 
 //Method 2 --> BFS (Breadth First Search)
 
-//To be Updated Soon
+class Solution {
+    public List<List<Integer>> levelOrder(Node root) {
+        Queue<Node> queue = new LinkedList<>();
+        List<List<Integer>> res = new ArrayList<List<Integer>>();
+        if(root!=null){
+           queue.add(root);
+        }
+        
+        while(!queue.isEmpty())
+        {
+            int len = queue.size();
+            ArrayList<Integer> list = new ArrayList<>();
+            while(len-->0)
+            {
+                Node currNode = queue.remove();
+                list.add(currNode.val);
+                for(Node child: currNode.children){
+                    queue.add(child);
+                }
+            }
+            res.add(list);
+        }
+        return res;
+    }
+}
 
 /*
 // Definition for a Node.
