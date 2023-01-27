@@ -1,4 +1,6 @@
-//Method 1 --> Using Stack (Implementation similar to 85. Maximal Rectangle(Hard Tagged))
+// Method 1 --> 150ms runtime Beats 6% (to be Optimized with Dp)
+ 
+// Using Stack (Implementation similar to 85. Maximal Rectangle(Hard Tagged))
 
 class Solution {
     public int maximalSquare(char[][] matrix) {
