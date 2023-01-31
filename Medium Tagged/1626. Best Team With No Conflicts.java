@@ -1,3 +1,6 @@
+// O(n^2) time and O(n) space DP Solution with Sorting
+// Beats 83% Java
+
 class Solution {
     public int bestTeamScore(int[] scores, int[] ages) {
         int n = scores.length;
