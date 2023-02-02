@@ -1,3 +1,5 @@
+// Beats 87% without Trie
+
 class MagicDictionary {
     String[] dict;
     public MagicDictionary() {
