@@ -1,63 +1,58 @@
+// Beats 71.37% in time & 94.4% in space
+
 class Solution {
     int m,n;
     public List<String> findWords(char[][] board, String[] words) {
         List<String> list = new ArrayList<>();
         m=board.length;
         n=board[0].length;
-        TrieNode root= createTrie(words);
+        Trie trie= new Trie();
+        
+        for(String s:words)
+            add(trie,s);
         
         for(int i=0;i<m;i++)
-        {
             for(int j=0;j<n;j++)
-            {
-                backtrack(board,i,j,root,list);
-            }
-        }
+               backtrack(board,i,j,trie,list);
+
         return list;
     }
     
-    private void backtrack(char[][] board,int i,int j,TrieNode root,List<String> list)
+    private void backtrack(char[][] board,int i,int j,Trie trie,List<String> list)
     {
-         if(i==-1||j==-1||i==m||j==n)
-            return;
-         char ch = board[i][j];
-         if (ch == '*' || root.next[ch - 'a'] == null)
-            return;
-         root = root.next[ch - 'a'];
-         if (root.word != null) {
-             list.add(root.word);
-             root.word = null;
-         }        
-        
-        board[i][j]='*';  //marking as visited
+        if(i==-1||j==-1||i==m||j==n)
+           return;
+        char ch = board[i][j];
+        if(ch == '*' || trie.a[ch-'a']==null)
+           return;
+        trie = trie.a[ch - 'a'];
+        if (trie.word != null){
+           list.add(trie.word);
+           trie.word = null; // deleting word from trie after addition to list to avoid duplicates
+        }      
+        board[i][j]='*';  // marking as visited
+        backtrack(board,i+1,j,trie,list);  // up ↑
+        backtrack(board,i-1,j,trie,list);  // down ↓
+        backtrack(board,i,j+1,trie,list);  // right →
+        backtrack(board,i,j-1,trie,list);  // left ←
+        board[i][j]=ch;  // retrieving the original character
+    }
 
-        backtrack(board,i+1,j,root,list);
-        backtrack(board,i-1,j,root,list);
-        backtrack(board,i,j+1,root,list);
-        backtrack(board,i,j-1,root,list);
-        board[i][j]=ch;  //retrieving the original character
-    }
-    
-    class TrieNode{
-        TrieNode[] next = new TrieNode[26];
-        String word;
-    }
-    
-    private TrieNode createTrie(String[] words)
-    {
-        TrieNode root = new TrieNode();
-        for(String s:words)
-        {
-            TrieNode curr = root;
-            for(int i=0;i<s.length();i++)
-            {
-                char ch = s.charAt(i);
-                if(curr.next[ch-'a']==null)
-                    curr.next[ch-'a']=new TrieNode();
-                curr = curr.next[ch-'a'];
-            }
-            curr.word = s;
+    private void add(Trie trie,String s){
+        for(char ch:s.toCharArray()){
+            if(trie.a[ch-'a']==null)
+                trie.a[ch-'a']=new Trie();
+            trie = trie.a[ch-'a'];
         }
-        return root;
+        trie.word=s;
     }
 }
+
+ class Trie{
+    Trie[] a;
+    String word;
+    public Trie(){
+        this.a = new Trie[26];
+        this.word=null;
+    }
+ }
