@@ -1,4 +1,4 @@
-// 1ms runtime Beats 100% 
+// 1ms runtime Beats 100% (Sliding Window)
 
 class Solution {
     public int minSubArrayLen(int k, int[] nums) {
