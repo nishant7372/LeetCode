@@ -1,4 +1,4 @@
-// Method 2 -->  Beats 74% (Clean and Concise)
+// Method 1 -->  Beats 74% (Clean and Concise)
 
 class Solution {
     public int longestOnes(int[] nums, int k) {
