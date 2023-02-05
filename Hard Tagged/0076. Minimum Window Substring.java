@@ -1,3 +1,57 @@
+// Method 1 --> Beats 80% (Clean Code)
+
+class Solution {
+    public String minWindow(String s, String t) {
+        int[] a = new int[52]; //for String t  
+        int[] b = new int[52]; //for window of String s
+        
+        int[] res = new int[]{-1,-1};  //store start & end of minString
+        
+        for(char ch:t.toCharArray())  //for String t
+        {
+            if(ch<='Z')
+               a[ch-'A']++;
+            else
+               a[ch-'a'+26]++;
+        }
+        
+        int left=0;  //sliding window left pointer
+        int right=0; //sliding window right pointer
+        
+        while(right<s.length())
+        {            
+            if(s.charAt(right)<='Z')
+                b[s.charAt(right++)-'A']++;
+            else
+                b[s.charAt(right++)-'a'+26]++;
+            
+            while(found(a,b))
+            {
+                if(res[0]==-1 || res[1]-res[0]>right-left){
+                    res[0]=left;
+                    res[1]=right;
+                }
+                if(s.charAt(left)<='Z')
+                    b[s.charAt(left++)-'A']--;
+                else
+                    b[s.charAt(left++)-'a'+26]--;
+            }
+        }
+        return res[0]==-1? "": s.substring(res[0],res[1]);
+    }
+    
+    private boolean found(int[] a,int[] b)
+    {
+        for(int i=0;i<52;i++){
+            if(a[i]>0 && a[i]>b[i])
+                return false;
+        }
+        return true;
+    }
+}
+
+// Method 2 --> Beats 83% (complex Code)
+
 class Solution {
     public String minWindow(String s, String t) {
         
@@ -21,13 +75,7 @@ class Solution {
         {            
             if(compare(a,b)) //string found
             {
-                if(res[1]-res[0]==0)
-                {
-                    res[0]=left;
-                    res[1]=right;
-                }
-                else if(res[1]-res[0]>right-left)
-                {
+                if(res[1]-res[0]==0 || res[1]-res[0]>right-left){
                     res[0]=left;
                     res[1]=right;
                 }
