@@ -1,12 +1,15 @@
+// 0ms runtime and Beats 100% 
+
 class Solution {
     public boolean equalFrequency(String word) {
         int[] a = new int[26];
         
-        for(int i=0;i<word.length();i++)
-            a[word.charAt(i)-'a']++;
+        for(char ch:word.toCharArray())
+            a[ch-'a']++;
         
         int max=0;
         int min=word.charAt(0)-'a';
+
         for(int i=0;i<a.length;i++)
         {
             if(a[i]>a[max])
@@ -17,7 +20,7 @@ class Solution {
         //checking by reducing max freq by 1
         a[max]--;
         if(check(a))
-             return true;
+            return true;
         a[max]++;
         
         //checking by reducing min freq by 1
@@ -33,10 +36,10 @@ class Solution {
         for(int x:a)
         {
             if(x>0){
-            if(last==0)
-                last = x;
-            else if(last!=x)
-                return false;
+                if(last==0)
+                   last=x;
+                else if(last!=x)
+                   return false;
             }
         }
         return true;
