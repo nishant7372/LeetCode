@@ -1,4 +1,4 @@
-// Method 1 - Binary Search + Linear Search (to find count of elements>=mid), 0ms runtime Beats 100%
+// Method 1 - Binary Search + Linear Search O(nlogn) (to find count of elements>=mid), 0ms runtime Beats 100%
 
 class Solution {
     public int specialArray(int[] nums) {
@@ -22,7 +22,7 @@ class Solution {
 }
 
 
-// Method 2 - a. Counting Sort O(n+k) + Binary Search (log(logn)), 1ms runtime Beats 78%
+// Method 2 - a. Counting Sort O(n+k) + Binary Search O(log(logn)), 1ms runtime Beats 78%
 
 class Solution {
     public int specialArray(int[] nums) {
@@ -67,7 +67,7 @@ class Solution {
     }
 }
 
-// Method 2 - b. Arrays.sort(nlogn) + Binary Search (log(logn)), 1ms runtime Beats 78%
+// Method 2 - b. Arrays.sort O(nlogn) + Binary Search O(log(logn)), 1ms runtime Beats 78%
 
 class Solution {
     public int specialArray(int[] nums) {
