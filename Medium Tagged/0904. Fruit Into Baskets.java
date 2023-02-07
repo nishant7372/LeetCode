@@ -26,3 +26,49 @@ class Solution {
         return Math.max(max,c);
     }
 }
+
+// Method 2 --> Beats 97% 6ms runtime 
+// Sliding Window + HashTable 
+// O(n) time and O(n) space
+
+class Solution {
+    public int totalFruit(int[] fruits) {
+        int[] freq = new int[fruits.length]; //0 <= fruits[i] < fruits.length
+
+        int j=0, max=0, unique=0;
+        for(int i=0;i<fruits.length;i++){
+            if(freq[fruits[i]]++==0)
+               unique++;
+
+            while(unique>2){
+                if(freq[fruits[j++]]--==1)
+                   unique--;
+            }
+            max=Math.max(max,i-j+1);
+        }
+        return max;
+    }
+}
+
+// Method 3 -> 61ms runtime Beats 35% Simple Sliding Window
+// Logic - Find the length of longest subarray with two distict elements
+// Technique used - Sliding window
+
+class Solution {
+    public int totalFruit(int[] fruits) {
+        Map<Integer,Integer> map = new HashMap<>();
+        int j=0, max=0;
+        for(int i=0;i<fruits.length;i++){
+            map.put(fruits[i],map.getOrDefault(fruits[i],0)+1);
+
+            while(map.keySet().size()>2){
+                map.put(fruits[j],map.get(fruits[j])-1);
+                if(map.get(fruits[j])==0)
+                   map.remove(fruits[j]);
+                j++;
+            }
+            max=Math.max(max,i-j+1);
+        }
+        return max;
+    }
+}
