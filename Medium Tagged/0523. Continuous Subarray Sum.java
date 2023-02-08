@@ -1,10 +1,10 @@
+// Beats 82%, 20ms runtime HashMap Solution
+
 class Solution {
     public boolean checkSubarraySum(int[] nums, int k) {
         Map<Integer,Integer> map = new HashMap<>();
-        
         map.put(0,0);
-        int sum=0;
-        int i=0;
+        int sum=0, i=0;
         for(int x:nums)
         {
             sum+=x;
