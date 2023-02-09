@@ -7,7 +7,10 @@ class Solution {
             max = Math.max(x,max);
 
         long[][] a = new long[max+1][4];
-    
+        // [0] -> sum of indices at right of i
+        // [1] -> sum of indices at left of i
+        // [2] -> left freq
+        // [3] -> right freq
         int i=0;
         for(int x:arr)
         {
