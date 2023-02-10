@@ -1,22 +1,24 @@
+// 1ms runtime, Beats 99.23%, O(n) time and O(n) space 
+
 class Solution {
     public boolean isValid(String s) {
-        Stack<Character> st = new Stack<Character>();
+        Stack<Character> st = new Stack<>();
       
-        for(int i=0;i<s.length();i++)
+        for(char ch:s.toCharArray())
         {
-            if(s.charAt(i)=='('||s.charAt(i)=='['||s.charAt(i)=='{')
-                st.push(s.charAt(i));
+            if(ch=='('||ch=='['||ch=='{')
+                st.push(ch);
             else
             {
-            if(st.empty())
-                return false;
-            else if(s.charAt(i)==')'&&st.peek()!='(')
-                return false;
-            else if(s.charAt(i)==']'&&st.peek()!='[')
-                return false;
-            else if(s.charAt(i)=='}'&&st.peek()!='{')
-                return false;
-            st.pop();
+                if(st.empty())
+                    return false;
+                else if(ch==')'&&st.peek()!='(')
+                    return false;
+                else if(ch==']'&&st.peek()!='[')
+                    return false;
+                else if(ch=='}'&&st.peek()!='{')
+                    return false;
+                st.pop();
             }
         }
         return st.empty();
