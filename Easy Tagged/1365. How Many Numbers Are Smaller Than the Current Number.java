@@ -1,61 +1,47 @@
-//Method 1
+//Method 1 -> 0ms runtime Beats 100%
 //Time Complexity -> O(n) and Space Complexity -> O(101)
+
 class Solution {
     public int[] smallerNumbersThanCurrent(int[] nums) {
         int[] freq = new int[101];
         
         for(int x:nums)
-        {
             freq[x]++;
-        }
         
         int sum=0;
-        for(int i=0;i<freq.length;i++)
-        {
-            int a = freq[i];
-            freq[i]=sum;
-            sum+=a;
-        }
+        for(int i=1;i<freq.length;i++)
+            freq[i]+=freq[i-1];
         
         int i=0;
         for(int x:nums)
-        {
-            nums[i++] = freq[x];
-        }
+            nums[i++] = x==0? 0:freq[x-1];
+
         return nums;
     }
 }
 
-//Method 2
-//Using TreeMap and HashMap
-// 9ms runtime faster than 71 percent
+// Method 2 -> 9ms runtime Beats 71%
+// Using TreeMap
+
 class Solution {
     public int[] smallerNumbersThanCurrent(int[] nums) {
-        int[] res = new int[nums.length];
         Map<Integer,Integer> map = new TreeMap();
         
         for(int x:nums)
-        {
-            if(map.get(x)==null)
-                map.put(x,1);
-            else
-                map.put(x,map.get(x)+1);
-        }
+            map.put(x,map.getOrDefault(x,0)+1);
         
         Map<Integer,Integer> map2 = new HashMap();
         
         int sum=0;
-        for(var entry:map.entrySet())
-        {
+        for(var entry:map.entrySet()){
             map2.put(entry.getKey(),sum);
             sum+=entry.getValue();
         }
         
         int i=0;
-        for(int x:nums)
-        {
-            res[i++] = map2.get(x);
+        for(int x:nums){
+            nums[i++] = map2.get(x);
         }
-        return res;
+        return nums;
     }
 }
