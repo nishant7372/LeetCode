@@ -1,3 +1,4 @@
+// Method 1 -> Two pointer based O(n^2) time and O(1) space 
 // Beats 79%
 // Using Substring Updation
 
@@ -33,7 +34,7 @@ class Solution {
     }
 }
 
-
+// Method 2 -> Two pointer based O(n^2) time and O(1) space
 // Beats 60% 
 // Tracking begin and end index of longest palindromic substring  (Works when we need the longest palindromic substring with smallest begin index)
 
