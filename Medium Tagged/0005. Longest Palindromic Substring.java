@@ -20,13 +20,13 @@ class Solution {
                 break;
             j--; k++;
         }
-        return res.length()<k-j? s.substring(j+1,k):res;
+        return res.length()<k-j-1? s.substring(j+1,k):res;
     }
 }
 
 // Method 2 -> Two pointer based O(n^2) time and O(1) space
 // 25ms runtime Beats 60% 
-// Tracking begin and end index of longest palindromic substring  (Works when we need the longest palindromic substring with smallest begin index)
+// Tracking begin and end index of longest palindromic substring
 
 class Solution {
     public String longestPalindrome(String s) {
