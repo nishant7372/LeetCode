@@ -6,9 +6,11 @@ class Solution {
     public String longestPalindrome(String s) {
         int n = s.length();
         String res="";
+        // even length palindromic substrings
         for(int i=0;i<n;i++){
            res=find(i,i+1,s,res);
         }
+        // odd length palindromic substrings
         for(int i=1;i<n;i++){
            res=find(i-1,i+1,s,res);
         }
@@ -33,19 +35,19 @@ class Solution {
 
 
 // Beats 60% 
-// Tracking begin and end index of longest palindromic substring  (Works when we need the first palindromic substring)
+// Tracking begin and end index of longest palindromic substring  (Works when we need the longest palindromic substring with smallest begin index)
 
 class Solution {
     public String longestPalindrome(String s) {
         int[] res = new int[]{0,1};
-        for(int i=0;i<s.length();i++){
+        for(int i=0;i<s.length();i++){  // even length palindromic substrings
             int[] temp = find(i,i+1,s);
             if(res[1]-res[0]<temp[1]-temp[0])
                res=temp;
         }
-        for(int i=1;i<s.length();i++) {
+        for(int i=1;i<s.length();i++) {  // odd length palindromic substrings
             int[] temp = find(i-1,i+1,s);
-            if(res[1]-res[0]<temp[1]-temp[0])
+            if(res[1]-res[0]<temp[1]-temp[0])   
                res=temp;
         }
         return s.substring(res[0],res[1]);
