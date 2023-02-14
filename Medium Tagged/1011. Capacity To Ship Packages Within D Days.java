@@ -1,3 +1,6 @@
+// 9ms runtime, Beats 95.5%
+// Binary Search
+
 class Solution {
     public int shipWithinDays(int[] weights, int days) {
         // min weight of ship can be max(weights) (needs each box to be completely transfered per day)
