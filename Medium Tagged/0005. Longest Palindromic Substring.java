@@ -33,7 +33,7 @@ class Solution {
 
 
 // Beats 60% 
-// Tracking begin and end index of longest palindromic substring
+// Tracking begin and end index of longest palindromic substring  (Works when we need the first palindromic substring)
 
 class Solution {
     public String longestPalindrome(String s) {
