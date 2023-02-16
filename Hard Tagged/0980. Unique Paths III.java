@@ -1,105 +1,41 @@
-//Method 1
+// Method 1 -> 0ms runtime Beats 100%
+// BackTracking
 
 class Solution {
     int paths;
-    int empty;
     public int uniquePathsIII(int[][] grid) {
-        empty = countEmpty(grid);
+        paths=0;
+        int x=0,y=0,c=1;
         for(int i=0;i<grid.length;i++)
         {
             for(int j=0;j<grid[0].length;j++)
             {
                 if(grid[i][j]==1){
-                solve(i,j,grid,0);
-                return paths;
+                   x=i;
+                   y=j;
                 }
+                if(grid[i][j]==0)
+                    c++;
             }
         }
-        return 0;
+        solve(x,y,grid,c);
+        return paths;
     }
 
     private void solve(int i,int j,int[][] grid,int c)
     {
         if(i==-1||j==-1||i==grid.length||j==grid[0].length||grid[i][j]==-1)
-        return;
-        if(grid[i][j]==2 && c==empty+1){
-            paths++;
+            return;
+        if(grid[i][j]==2){
+            if(c==0)
+               paths++;
             return;
         }
-        int temp = grid[i][j];
         grid[i][j]=-1;
-        solve(i+1,j,grid,c+1);
-        solve(i-1,j,grid,c+1);
-        solve(i,j-1,grid,c+1);
-        solve(i,j+1,grid,c+1);
-        grid[i][j]= temp;
-    }
-
-
-    private int countEmpty(int[][] grid)
-    {
-        int c=0;
-        for(int i=0;i<grid.length;i++)
-        {
-            for(int j=0;j<grid[0].length;j++)
-            {
-                if(grid[i][j]==0){
-                    c++;
-                }
-            }
-        }
-        return c;
-    }
-}
-
-
-//Method 2
-
-class Solution {
-    int paths;
-    public int uniquePathsIII(int[][] grid) {
-        for(int i=0;i<grid.length;i++)
-        {
-            for(int j=0;j<grid[0].length;j++)
-            {
-                if(grid[i][j]==1){
-                solve(i,j,grid);
-                return paths;
-                }
-            }
-        }
-        return 0;
-    }
-
-    private void solve(int i,int j,int[][] grid)
-    {
-        if(i==-1||j==-1||i==grid.length||j==grid[0].length||grid[i][j]==-1)
-        return;
-        if(grid[i][j]==2 && check(grid)){
-            paths++;
-            return;
-        }
-        int temp = grid[i][j];
-        grid[i][j]=-1;
-        solve(i+1,j,grid);
-        solve(i-1,j,grid);
-        solve(i,j-1,grid);
-        solve(i,j+1,grid);
-        grid[i][j]= temp;
-    }
-
-
-    private boolean check(int[][] grid)
-    {
-        for(int i=0;i<grid.length;i++)
-        {
-            for(int j=0;j<grid[0].length;j++)
-            {
-                if(grid[i][j]==0){
-                return false;
-                }
-            }
-        }
-        return true;
+        solve(i+1,j,grid,c-1);
+        solve(i-1,j,grid,c-1);
+        solve(i,j-1,grid,c-1);
+        solve(i,j+1,grid,c-1);
+        grid[i][j]=0;
     }
 }
