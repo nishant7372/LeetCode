@@ -1,8 +1,32 @@
-//Breadth First Search
+//Depth First Search -> 0ms runtime, Beats 100%
+
+class Solution {
+    public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
+        List<List<Integer>> list= new ArrayList<>();
+        traverse(root,0,list);
+        for(int i=1;i<list.size();i+=2)
+            Collections.reverse(list.get(i));
+        return list;
+    }
+
+    private void traverse(TreeNode root,int c,List<List<Integer>> a)
+    {
+        if(root==null)
+            return;
+        if(a.size()==c)
+            a.add(new ArrayList<Integer>());
+        a.get(c++).add(root.val);
+        traverse(root.left,c,a);
+        traverse(root.right,c,a);
+    }
+}
+
+//Breadth First Search -> 1ms runtime, Beats 82%
+
 class Solution {
     public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
         Queue<TreeNode> q = new LinkedList<>();
-        List<List<Integer>> list= new ArrayList<List<Integer>>();
+        List<List<Integer>> list= new ArrayList<>();
         if(root!=null)
         q.add(root);
         int j=0;
@@ -10,46 +34,19 @@ class Solution {
         {
             int c=q.size();
             list.add(new ArrayList<Integer>());
-            for(int i=0;i<c;i++)
+            while(c-->0)
             {
-                TreeNode presentNode = q.remove();
-                list.get(j).add(presentNode.val);
-                if(presentNode.left!=null)
-                    q.add(presentNode.left);
-                if(presentNode.right!=null)
-                    q.add(presentNode.right);
+                TreeNode curr = q.remove();
+                list.get(j).add(curr.val);
+                if(curr.left!=null)
+                    q.add(curr.left);
+                if(curr.right!=null)
+                    q.add(curr.right);
             }
             j++;
         }
         for(int i=1;i<list.size();i+=2)
             Collections.reverse(list.get(i));
         return list;
-    }
-}
-
-//Depth First Search
-class Solution {
-    public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
-        List<List<Integer>> a = new ArrayList<List<Integer>>();
-        
-        traverse(root,0,a);
-        
-        for(int i=0;i<a.size();i++)
-        {
-            if(i%2==1)
-            Collections.reverse(a.get(i));
-        }
-        return a;
-    }
-    
-    private void traverse(TreeNode root,int c, List<List<Integer>> a)
-    {
-        if(root==null)
-            return;
-        if(a.size()<=c)
-             a.add(new ArrayList<Integer>());
-        a.get(c).add(root.val);
-        traverse(root.left,c+1,a);
-        traverse(root.right,c+1,a);
     }
 }
