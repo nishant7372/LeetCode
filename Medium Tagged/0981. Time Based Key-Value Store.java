@@ -1,33 +1,67 @@
+// Method 1 
+// Beats 88.4% -> Single HashMap + Binary Search
+
 class TimeMap {
-    Map<String,ArrayList<Integer>> map;
-    Map<Integer,String> map2;
+    Map<String,ArrayList<Obj>> keyMap;  // key -> list(value,timestamp)
     public TimeMap() {
-        map = new HashMap<String,ArrayList<Integer>>();
-        map2 = new HashMap<Integer,String>();
+        keyMap = new HashMap<>();
     }
     
     public void set(String key, String value, int timestamp) {
-        if(map.get(key)==null){
-            ArrayList<Integer> temp = new ArrayList<Integer>();
-            temp.add(timestamp);
-            map.put(key,temp);
-        }
-        else{
-            map.get(key).add(timestamp);
-        }
-        map2.put(timestamp,value);
+        if(keyMap.get(key)==null)
+            keyMap.put(key,new ArrayList<>());
+        keyMap.get(key).add(new Obj(value,timestamp));
     }
     
     public String get(String key, int timestamp) {
-        if(map.get(key)==null)
+        if(keyMap.get(key)==null)
             return "";
-        ArrayList<Integer> list = map.get(key);
-        int idx = Collections.binarySearch(list,timestamp);
+        int idx = Collections.binarySearch(keyMap.get(key),new Obj("", timestamp), (o1,o2) -> Integer.compare(o1.time, o2.time));
         if(idx<0)
             idx = -1*(idx+2);
         if(idx==-1)
             return "";
-        return map2.get(list.get(idx));
+        return keyMap.get(key).get(idx).value;
+    }
+}
+
+class Obj{
+    String value;
+    int time;
+    public Obj(String value, int timestamp){
+        this.value = value;
+        this.time = timestamp;
+    }
+}
+
+// Method 2
+// Beats 88.4% -> Two HashMap + Binary Search
+
+class TimeMap {
+    Map<String,ArrayList<Integer>> keyMap;  // key -> list(timestamp)
+    Map<Integer,String> valueMap;  // timestamp -> value
+    public TimeMap() {
+        keyMap = new HashMap<>();
+        valueMap = new HashMap<>();
+    }
+    
+    public void set(String key, String value, int timestamp) {
+        if(keyMap.get(key)==null){
+            keyMap.put(key,new ArrayList<>());
+        }
+        keyMap.get(key).add(timestamp);
+        valueMap.put(timestamp,value);
+    }
+    
+    public String get(String key, int timestamp) {
+        if(keyMap.get(key)==null)
+            return "";
+        int idx = Collections.binarySearch(keyMap.get(key),timestamp);
+        if(idx<0)
+            idx = -1*(idx+2);
+        if(idx==-1)
+            return "";
+        return valueMap.get(keyMap.get(key).get(idx));
     }
 }
 
