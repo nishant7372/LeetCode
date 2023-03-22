@@ -1,5 +1,6 @@
 // 25ms runtime, Faster than 99.5%   --> Optimized Approach
 
+// DFS
 class Solution {
     boolean[] visited;
     Map<Node,Node> map1;
@@ -30,6 +31,50 @@ class Solution {
         visited[node.val]=true;
         for(Node neighbor:node.neighbors){
             dfs(neighbor);
+        }
+    }
+}
+
+// BFS 
+
+class Solution {
+    boolean[] visited;
+    Map<Node,Node> map;
+    public Node cloneGraph(Node node) {
+        visited=new boolean[101];
+        map=new HashMap<>();
+        bfs(node);
+
+        for(Node currNode:map.keySet())
+        {
+            List<Node> neighbors = currNode.neighbors;
+            List<Node> newNodeNeighbors = new ArrayList<>();
+            for(Node neighbor: neighbors)
+            {
+                newNodeNeighbors.add(map.get(neighbor));
+            }
+            map.get(currNode).neighbors = newNodeNeighbors;
+        }
+        return map.get(node);
+    }
+
+    private void bfs(Node node)
+    {
+        if(node==null){
+            return;
+        }
+        Queue<Node> queue = new ArrayDeque<>();
+        queue.add(node);
+        visited[node.val]=true;
+        while(!queue.isEmpty()){
+            Node curr =  queue.remove();
+            map.put(curr,new Node(curr.val));
+            for(Node neighbor:curr.neighbors){
+                if(!visited[neighbor.val]){
+                   queue.add(neighbor);
+                   visited[neighbor.val]=true;
+                }
+            }
         }
     }
 }
