@@ -4,6 +4,6 @@ Solutions of LeetCode Problems
 
 ## My LeetCode Profile - [nishant7372](https://leetcode.com/nishant7372/)
 
-![image](https://user-images.githubusercontent.com/91368799/233766133-7baaaa2b-178f-4553-adce-806c9f892d0c.png)
+![image](https://github.com/nishant7372/LeetCode/assets/91368799/7132837f-2bdb-45c0-b2d3-29d62d28c34c)
 
 
