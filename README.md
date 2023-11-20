@@ -4,7 +4,8 @@ Solutions of LeetCode Problems
 
 ## My LeetCode Profile - [nishant7372](https://leetcode.com/nishant7372/)
 
-![image](https://github.com/nishant7372/LeetCode/assets/91368799/85bf32f0-a981-4112-9763-75876590d425)
+![image](https://github.com/nishant7372/LeetCode/assets/91368799/4802c1f9-df36-4417-810a-6f8f3142b43e)
+
 
 
 
